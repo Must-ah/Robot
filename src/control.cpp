@@ -10,6 +10,10 @@ using std::pair;
 #include <ostream>
 using std::ostream;
 
+#include <iostream>
+using std::cout;
+using std::endl;
+
 Control::Control()
 {
     Command command;
@@ -51,9 +55,10 @@ ostream &operator<<(ostream &os, const Control &c)
     // os << robot << " " << board;
     auto [xDimension, yDimension] = board.getBoardSize();
     auto [robotXposition, robotYposition] = robot.getRobotPosition();
+    cout << " \n";
     for (int row = xDimension - 1; row >= 0; --row)
     {
-        for (int col = 0; col < yDimension; col++)
+        for (int col = 0; col < yDimension; ++col)
         {
             if (robotXposition == row && robotYposition == col)
             {
@@ -67,7 +72,7 @@ ostream &operator<<(ostream &os, const Control &c)
         }
         os << endl;
     }
-    cout << "\nOutput: " << robotXposition << "," << robotYposition << "," << robot.getRbotSOrientation() << endl;
+    cout << "\nOutput: " << robotYposition << "," << robotXposition << "," << robot.getRbotSOrientation() << endl;
     return os;
 }
 

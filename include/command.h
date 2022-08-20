@@ -42,21 +42,21 @@ struct Command
     Command() = default;
     Command(string newCommand)
     {
-        bool commandValid = validCommands.find(newCommand) != validCommands.end();
+
         if (!canIStart)
         {
             std::string::size_type n = newCommand.find("PLACE");
             if (n != std::string::npos)
             {
-                auto startPosX = newCommand.find(" ") + 1;
-                auto endPosX = newCommand.find(",", startPosX + 1);
-                string xP = newCommand.substr(startPosX, endPosX - startPosX);
-                startPosition.first = std::stoi(xP);
-
-                auto startPosY = endPosX + 1;
-                auto endPosY = newCommand.find(",", startPosY);
+                auto startPosY = newCommand.find(" ") + 1;
+                auto endPosY = newCommand.find(",", startPosY + 1);
                 string yP = newCommand.substr(startPosY, endPosY - startPosY);
                 startPosition.second = std::stoi(yP);
+
+                auto startPosX = endPosY + 1;
+                auto endPosX = newCommand.find(",", startPosX);
+                string xP = newCommand.substr(startPosX, endPosX - startPosX);
+                startPosition.first = std::stoi(xP);
                 auto startOrientationIdx = newCommand.find_last_of(",");
                 string orientation = newCommand.substr(startOrientationIdx + 1);
 
