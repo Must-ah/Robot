@@ -1,3 +1,10 @@
+
+#include "include/board.h"
+#include "include/robot.h"
+#include "include/command.h"
+#include "include/control.h"
+#include "include/inputGeneratorFile.h"
+
 #include <iostream>
 using std::cin;
 using std::cout;
@@ -9,17 +16,11 @@ using std::string;
 using std::make_pair;
 using std::pair;
 
-#include "board.cpp"
-#include "command.cpp"
-#include "robot.cpp"
-#include "control.cpp"
-
-#include "cor-input.cpp"
-
 int main()
 {
 
-    StringGenerator inputData = fileOpener("data/input.txt");
+    string inputFileName = "../data/input.txt";
+    StringGenerator inputData = fileOpener(inputFileName);
     Command command;
     Control control;
     for (auto line : inputData)

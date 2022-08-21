@@ -1,3 +1,5 @@
+#ifndef FILE_GENERATOR_H
+#define FILE_GENERATOR_H
 #include <iostream>
 using std::cout;
 using std::endl;
@@ -125,7 +127,7 @@ StringGenerator fileOpener(const string &filename)
         cout << "File not found" << endl;
     }
 }
-
+/*
 void readFromFile(string filePath)
 {
     // cout << "Reading from file: " << filePath << endl;
@@ -134,6 +136,7 @@ void readFromFile(string filePath)
         cout << line << endl;
     }
 }
+*/
 
 /*
 int main()
@@ -143,3 +146,5 @@ int main()
     return 0;
 }
 */
+
+#endif // FILE_GENERATOR_H
