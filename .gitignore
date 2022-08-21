@@ -36,3 +36,4 @@
 *.zip
 
 .vscode*
+build*
