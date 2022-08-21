@@ -1,18 +1,10 @@
 #include "../include/control.h"
+/*
 #include "../include/robot.h"
 #include "../include/board.h"
 #include "../include/command.h"
+*/
 
-#include <utility>
-using std::make_pair;
-using std::pair;
-
-#include <ostream>
-using std::ostream;
-
-#include <iostream>
-using std::cout;
-using std::endl;
 
 Control::Control()
 {

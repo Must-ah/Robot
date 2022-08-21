@@ -7,7 +7,7 @@ using std::pair;
 #include <ostream>
 using std::ostream;
 class Robot;
-class Command;
+struct Command;
 class Board
 {
     pair<int,int> boardXYDimensions = std::make_pair(5, 5);    
