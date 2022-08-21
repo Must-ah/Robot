@@ -11,10 +11,13 @@ using std::pair;
 using std::string;
 
 #include <iostream>
+using std::cout;
 using std::endl;
 
 #include <unordered_set>
 using std::unordered_set;
+
+#include <stdexcept>
 
 struct Command
 {
@@ -36,7 +39,7 @@ struct Command
         "RIGHT",
         "REPORT",
     };
-    pair<int, int> startPosition = std::make_pair(0, 0);
+    pair<int, int> startPosition = std::make_pair(-1, -1);
     string startOrientation = "NORTH";
     pair<int, int> boardXYDimension = std::make_pair(5, 5);
     Command() = default;
@@ -51,24 +54,40 @@ struct Command
                 auto startPosY = newCommand.find(" ") + 1;
                 auto endPosY = newCommand.find(",", startPosY + 1);
                 string yP = newCommand.substr(startPosY, endPosY - startPosY);
-                startPosition.second = std::stoi(yP);
 
                 auto startPosX = endPosY + 1;
                 auto endPosX = newCommand.find(",", startPosX);
                 string xP = newCommand.substr(startPosX, endPosX - startPosX);
-                startPosition.first = std::stoi(xP);
                 auto startOrientationIdx = newCommand.find_last_of(",");
                 string orientation = newCommand.substr(startOrientationIdx + 1);
+                int tempX = -1;
+                int tempY = -1;
+                try
+                {
+                    tempX = std::stoi(xP);
+                    tempY = std::stoi(yP);
+                }
+                catch (std::invalid_argument const &ex)
+                {
+                    throw std::invalid_argument("Invalid argument");
+                }
+                catch (std::out_of_range const &ex)
+                {
 
+                    throw std::out_of_range("Out of range");
+                }
                 auto searchDirection = orientationMap.find(orientation);
                 if (searchDirection != orientationMap.end())
                 {
                     auto [xBoardDim, yBoardDim] = boardXYDimension;
-                    if (startPosition.first >= 0 && startPosition.first <= xBoardDim)
+                    if (tempX >= 0 && tempX <= xBoardDim)
                     {
-                        if (startPosition.second >= 0 && startPosition.second <= yBoardDim)
+                        if (tempY >= 0 && tempY <= yBoardDim)
                         {
+                            startPosition.first = std::stoi(xP);
+                            startPosition.second = std::stoi(yP);
                             canIStart = true;
+                            //cout << "canIStart: " << std::boolalpha << canIStart << endl;
                             startOrientation = orientation;
                             givenCommand = "PLACE";
                         }

@@ -16,7 +16,7 @@ struct Command;
 
 class Robot
 {
-    pair<int, int> robotXYposition = std::make_pair(0, 0);
+    pair<int, int> robotXYposition = std::make_pair(-1, -1);
     string robotOrientation = "NORTH";
 
     unordered_map<string, char> orientationMap = {

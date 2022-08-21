@@ -5,12 +5,11 @@
 #include "../include/command.h"
 */
 
-
 Control::Control()
 {
     Command command;
-    Robot robot(command);
-    Board board(command.boardXYDimension);
+    Robot robot; //(command);
+    Board board; //(command.boardXYDimension);
 }
 
 void Control::movePiece(const Command &command)
@@ -34,6 +33,10 @@ void Control::movePiece(const Command &command)
 const pair<Robot, Board> Control::getControlState() const
 {
     return std::make_pair(robot, board);
+}
+const Command Control::getControlCommandState() const
+{
+    return command;
 }
 
 ostream &operator<<(ostream &os, const Control &c)
@@ -70,6 +73,7 @@ ostream &operator<<(ostream &os, const Control &c)
 
 Control::Control(const Command &command)
 {
+
     this->command = command;
     board = Board(command.boardXYDimension);
     robot = Robot(command);

@@ -26,7 +26,7 @@ class Control
 {
     Robot robot;
     Board board;
-    Command command;
+    Command command;    
 
 public:
     Control();
@@ -35,7 +35,9 @@ public:
     void updateRobotState(Robot &robot, const Command &command);
     void updateBoard(Board &board, const Robot &robot);
     const pair<Robot, Board> getControlState() const;
+    const Command getControlCommandState() const;
     friend ostream &operator<<(ostream &os, const Control &c);
+  
 };
 
 #endif

@@ -124,7 +124,7 @@ StringGenerator fileOpener(const string &filename)
     }
     else
     {
-        cout << "File not found" << endl;
+        co_yield "File not found";
     }
 }
 /*
