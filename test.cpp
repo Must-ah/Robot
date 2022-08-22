@@ -254,27 +254,47 @@ TEST(RobotTEST, robotDontFallSOUTH)
     EXPECT_STREQ(robotOrientation.c_str(), robotOrientationState.c_str());
 }
 
-TEST(RobotTEST, robotOrientation)
+TEST(RobotTest, robotOrientationRight)
 {
-    const string robotOrientation = "SOUTH";
-    const string filePath = "../data/robotDontFallSOUTH.txt";
-    StringGenerator inputData = fileOpener(filePath);
-    Command cmd;
-    Control control;
-    for (auto line : inputData)
+    const int expectedXPosition = 2;
+    const int expectedYPosition = 2;
+    const string validCommand = "PLACE 2,2,NORTH";
+    vector<string> rightSequence = {"EAST", "SOUTH", "WEST", "NORTH"};
+    Command cmd(validCommand);
+    Control control(cmd);
+    for (auto correctOrientation : rightSequence)
     {
-        cmd.updateCommandState(line);
+        cmd.updateCommandState("RIGHT");
         control.movePiece(cmd);
+        auto [robot, board] = control.getControlState();
+        auto [xPosition, yPosition] = robot.getRobotPosition();
+        EXPECT_EQ(xPosition, expectedXPosition);
+        EXPECT_EQ(yPosition, expectedYPosition);
+        const string robotOrientationState = robot.getRobotOrientationAsStr();
+        EXPECT_STREQ(correctOrientation.c_str(), robotOrientationState.c_str());
     }
-    auto [robot, board] = control.getControlState();
-    auto [xPosition, yPosition] = robot.getRobotPosition();
-    const string robotOrientationState = robot.getRobotOrientationAsStr();
-    EXPECT_EQ(xPosition, expectedXPosition);
-    EXPECT_EQ(yPosition, expectedYPosition);
-    EXPECT_STREQ(robotOrientation.c_str(), robotOrientationState.c_str());
 }
 
-
+TEST(RobotTest, robotOrientationLEFT)
+{
+    const int expectedXPosition = 3;
+    const int expectedYPosition = 3;
+    const string validCommand = "PLACE 3,3,NORTH";
+    vector<string> rightSequence = {"WEST", "SOUTH", "EAST", "NORTH"};
+    Command cmd(validCommand);
+    Control control(cmd);
+    for (auto correctOrientation : rightSequence)
+    {
+        cmd.updateCommandState("LEFT");
+        control.movePiece(cmd);
+        auto [robot, board] = control.getControlState();
+        auto [xPosition, yPosition] = robot.getRobotPosition();
+        EXPECT_EQ(xPosition, expectedXPosition);
+        EXPECT_EQ(yPosition, expectedYPosition);
+        const string robotOrientationState = robot.getRobotOrientationAsStr();
+        EXPECT_STREQ(correctOrientation.c_str(), robotOrientationState.c_str());
+    }
+}
 
 int main(int argc, char **argv)
 {
