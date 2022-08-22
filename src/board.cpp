@@ -2,7 +2,7 @@
 #include "../include/robot.h"
 #include "../include/command.h"
 
-Board::Board() : Board(std::make_pair(5, 5)) {}
+Board::Board() : Board(std::make_pair(-1, -1)) {}
 
 Board::Board(pair<int, int> XYDimension) : boardXYDimensions(XYDimension) {}
 
@@ -48,11 +48,11 @@ ostream &operator<<(ostream &os, Board &b)
 {
     auto [xDimension, yDimension] = b.getBoardSize();
     auto [robotXposition, robotYposition] = b.getRobotPosition();
-    for (int i = 0; i < yDimension; i++)
+    for (int col = 0; col < yDimension; ++col)
     {
-        for (int j = 0; j < xDimension; j++)
+        for (int row = 0; row < xDimension; ++row)
         {
-            if (robotXposition == j && robotYposition == i)
+            if (robotXposition == row && robotYposition == col)
             {
                 os << "R";
             }

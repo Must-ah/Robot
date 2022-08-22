@@ -10,8 +10,8 @@ class Robot;
 struct Command;
 class Board
 {
-    pair<int,int> boardXYDimensions = std::make_pair(5, 5);    
-    pair<int, int> robotPositionXY = std::make_pair(0, 0);
+    pair<int,int> boardXYDimensions = std::make_pair(-1, -1);    
+    pair<int, int> robotPositionXY = std::make_pair(-1, -1);
 
     //  methods
     bool isValidMovement(pair<int, int> newPosition) const;

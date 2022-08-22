@@ -1,15 +1,10 @@
 #include "../include/control.h"
-/*
-#include "../include/robot.h"
-#include "../include/board.h"
-#include "../include/command.h"
-*/
 
 Control::Control()
 {
     Command command;
-    Robot robot; //(command);
-    Board board; //(command.boardXYDimension);
+    Robot robot;
+    Board board;
 }
 
 void Control::movePiece(const Command &command)
@@ -22,8 +17,6 @@ void Control::movePiece(const Command &command)
     else if (command.givenCommand == "PLACE")
     {
         *this = Control(command);
-        // this->command = command;
-        // robot = Robot(command);
     }
     else if (board.move(robot, command))
     {
@@ -46,14 +39,13 @@ ostream &operator<<(ostream &os, const Control &c)
 {
     if (!c.command.canIStart)
     {
-        os << "Na Na You did not say the magic word" << endl;
+        os << "Ah ah ah, you didn't say the magic word" << endl;
         return os;
     }
     auto [robot, board] = c.getControlState();
-    // os << robot << " " << board;
     auto [xDimension, yDimension] = board.getBoardSize();
     auto [robotXposition, robotYposition] = robot.getRobotPosition();
-    cout << " \n";
+    os << " \n";
     for (int row = xDimension - 1; row >= 0; --row)
     {
         for (int col = 0; col < yDimension; ++col)
