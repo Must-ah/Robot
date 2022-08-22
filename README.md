@@ -1,7 +1,12 @@
 # Robot
 
-To run the program:
+To run the test:
 
 ```sh
-clang++-15 -std=c++20 ./src/main.cpp -o ./build/main.out && ./build/main.out
+mkdir build && cd build
+cmake ../
+cmake --build .
+./Robot
 ```
+
+<span style="color:darkred"> N.b.</span> Requires c++20.
