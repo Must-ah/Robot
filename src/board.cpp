@@ -22,10 +22,10 @@ bool Board::isValidMovement(pair<int, int> newPosition) const
 bool Board::move(const Robot &robot, const Command &command)
 {
     pair<int, int> newPosition = robot.checkNewStateIsValid(command);
-    auto orientation_command = command.orientationMap.find(robot.getRbotSOrientation());
+    auto orientation_command = command.orientationMap.find(robot.getRobotOrientationAsStr());
     if (isValidMovement(newPosition))
     {
-        
+
         auto [x, y] = orientation_command->second;
         robotPositionXY.first += x;
         robotPositionXY.second += y;
@@ -67,7 +67,7 @@ ostream &operator<<(ostream &os, Board &b)
 }
 
 void Board::syncWithRobot(const Robot &robot)
-{    
+{
     Robot newRobot = robot;
     robotPositionXY = newRobot.getRobotPosition();
 }

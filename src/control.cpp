@@ -14,17 +14,20 @@ Control::Control()
 
 void Control::movePiece(const Command &command)
 {
-    this->command = command;
+
     if (command.givenCommand == "REPORT")
     {
         cout << *this << endl;
     }
     else if (command.givenCommand == "PLACE")
     {
-        robot = Robot(command);
+        *this = Control(command);
+        // this->command = command;
+        // robot = Robot(command);
     }
     else if (board.move(robot, command))
     {
+        this->command = command;
         robot.updateState(command);
     }
     board.syncWithRobot(robot);
@@ -67,7 +70,11 @@ ostream &operator<<(ostream &os, const Control &c)
         }
         os << endl;
     }
-    cout << "\nOutput: " << robotYposition << "," << robotXposition << "," << robot.getRbotSOrientation() << endl;
+    os << "\nOutput: "
+       << robotYposition
+       << "," << robotXposition
+       << "," << robot.getRobotOrientationAsStr()
+       << endl;
     return os;
 }
 

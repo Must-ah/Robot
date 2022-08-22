@@ -45,7 +45,7 @@ public:
     void updateState(const Command &command);
     pair<int,int> checkNewStateIsValid(const Command &command) const ;
     const char getRobotOrientation() const;
-    const string getRbotSOrientation() const;
+    const string getRobotOrientationAsStr() const;
     friend ostream &operator<<(ostream &os, const Robot &r);
 };
 

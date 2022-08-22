@@ -22,7 +22,7 @@ using std::unordered_set;
 struct Command
 {
     bool canIStart = false;
-    string givenCommand = "MOVE";
+    string givenCommand = "NaN";
     unordered_map<string, pair<int, int>> orientationMap = {
         {"NORTH", std::make_pair(1, 0)},
         {"EAST", std::make_pair(0, 1)},

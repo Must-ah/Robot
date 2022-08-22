@@ -84,7 +84,7 @@ ostream &operator<<(ostream &os, const Robot &r)
     return os;
 }
 
-const string Robot::getRbotSOrientation() const
+const string Robot::getRobotOrientationAsStr() const
 {
     return robotOrientation;
 }

@@ -124,6 +124,28 @@ TEST(ControlTest, sendInvalidStartPosition)
     }
 }
 
+TEST(ControlTest, sendOneValidCommandRestInvalid)
+{
+    const int expectedXPosition = 4;
+    const int expectedYPosition = 3;
+    const string robotOrientation = "EAST";
+    const string filePath = "../data/oneValidCommandRestNotValid.txt";
+    StringGenerator inputData = fileOpener(filePath);
+    Command cmd;
+    Control control;
+    for (auto line : inputData)
+    {
+        cmd.updateCommandState(line);
+        control.movePiece(cmd);
+    }
+    auto [robot, board] = control.getControlState();
+    auto [xPosition, yPosition] = robot.getRobotPosition();
+    const string robotOrientationState = robot.getRobotOrientationAsStr();
+    EXPECT_EQ(xPosition, expectedXPosition);
+    EXPECT_EQ(yPosition, expectedYPosition);
+    EXPECT_STREQ(robotOrientation.c_str(), robotOrientationState.c_str());
+}
+
 int main(int argc, char **argv)
 {
     testing::InitGoogleTest(&argc, argv);
