@@ -146,6 +146,136 @@ TEST(ControlTest, sendOneValidCommandRestInvalid)
     EXPECT_STREQ(robotOrientation.c_str(), robotOrientationState.c_str());
 }
 
+TEST(ControlTest, oneValidCommandInStartAndAtTheEnd)
+{
+    const int expectedXPosition = 2;
+    const int expectedYPosition = 1;
+    const string robotOrientation = "WEST";
+    const string filePath = "../data/oneValidCommandInStartAndAtTheEnd.txt";
+    StringGenerator inputData = fileOpener(filePath);
+    Command cmd;
+    Control control;
+    for (auto line : inputData)
+    {
+        cmd.updateCommandState(line);
+        control.movePiece(cmd);
+    }
+    auto [robot, board] = control.getControlState();
+    auto [xPosition, yPosition] = robot.getRobotPosition();
+    const string robotOrientationState = robot.getRobotOrientationAsStr();
+    EXPECT_EQ(xPosition, expectedXPosition);
+    EXPECT_EQ(yPosition, expectedYPosition);
+    EXPECT_STREQ(robotOrientation.c_str(), robotOrientationState.c_str());
+}
+
+TEST(RobotTEST, robotDontFallNORTH)
+{
+    const int expectedXPosition = 4;
+    const int expectedYPosition = 4;
+    const string robotOrientation = "NORTH";
+    const string filePath = "../data/robotDontFallNORTH.txt";
+    StringGenerator inputData = fileOpener(filePath);
+    Command cmd;
+    Control control;
+    for (auto line : inputData)
+    {
+        cmd.updateCommandState(line);
+        control.movePiece(cmd);
+    }
+    auto [robot, board] = control.getControlState();
+    auto [xPosition, yPosition] = robot.getRobotPosition();
+    const string robotOrientationState = robot.getRobotOrientationAsStr();
+    EXPECT_EQ(xPosition, expectedXPosition);
+    EXPECT_EQ(yPosition, expectedYPosition);
+    EXPECT_STREQ(robotOrientation.c_str(), robotOrientationState.c_str());
+}
+TEST(RobotTEST, robotDontFallEAST)
+{
+    const int expectedXPosition = 4;
+    const int expectedYPosition = 4;
+    const string robotOrientation = "EAST";
+    const string filePath = "../data/robotDontFallEAST.txt";
+    StringGenerator inputData = fileOpener(filePath);
+    Command cmd;
+    Control control;
+    for (auto line : inputData)
+    {
+        cmd.updateCommandState(line);
+        control.movePiece(cmd);
+    }
+    auto [robot, board] = control.getControlState();
+    auto [xPosition, yPosition] = robot.getRobotPosition();
+    const string robotOrientationState = robot.getRobotOrientationAsStr();
+    EXPECT_EQ(xPosition, expectedXPosition);
+    EXPECT_EQ(yPosition, expectedYPosition);
+    EXPECT_STREQ(robotOrientation.c_str(), robotOrientationState.c_str());
+}
+
+TEST(RobotTEST, robotDontFallWEST)
+{
+    const int expectedXPosition = 0;
+    const int expectedYPosition = 0;
+    const string robotOrientation = "WEST";
+    const string filePath = "../data/robotDontFallWEST.txt";
+    StringGenerator inputData = fileOpener(filePath);
+    Command cmd;
+    Control control;
+    for (auto line : inputData)
+    {
+        cmd.updateCommandState(line);
+        control.movePiece(cmd);
+    }
+    auto [robot, board] = control.getControlState();
+    auto [xPosition, yPosition] = robot.getRobotPosition();
+    const string robotOrientationState = robot.getRobotOrientationAsStr();
+    EXPECT_EQ(xPosition, expectedXPosition);
+    EXPECT_EQ(yPosition, expectedYPosition);
+    EXPECT_STREQ(robotOrientation.c_str(), robotOrientationState.c_str());
+}
+TEST(RobotTEST, robotDontFallSOUTH)
+{
+    const int expectedXPosition = 0;
+    const int expectedYPosition = 0;
+    const string robotOrientation = "SOUTH";
+    const string filePath = "../data/robotDontFallSOUTH.txt";
+    StringGenerator inputData = fileOpener(filePath);
+    Command cmd;
+    Control control;
+    for (auto line : inputData)
+    {
+        cmd.updateCommandState(line);
+        control.movePiece(cmd);
+    }
+    auto [robot, board] = control.getControlState();
+    auto [xPosition, yPosition] = robot.getRobotPosition();
+    const string robotOrientationState = robot.getRobotOrientationAsStr();
+    EXPECT_EQ(xPosition, expectedXPosition);
+    EXPECT_EQ(yPosition, expectedYPosition);
+    EXPECT_STREQ(robotOrientation.c_str(), robotOrientationState.c_str());
+}
+
+TEST(RobotTEST, robotOrientation)
+{
+    const string robotOrientation = "SOUTH";
+    const string filePath = "../data/robotDontFallSOUTH.txt";
+    StringGenerator inputData = fileOpener(filePath);
+    Command cmd;
+    Control control;
+    for (auto line : inputData)
+    {
+        cmd.updateCommandState(line);
+        control.movePiece(cmd);
+    }
+    auto [robot, board] = control.getControlState();
+    auto [xPosition, yPosition] = robot.getRobotPosition();
+    const string robotOrientationState = robot.getRobotOrientationAsStr();
+    EXPECT_EQ(xPosition, expectedXPosition);
+    EXPECT_EQ(yPosition, expectedYPosition);
+    EXPECT_STREQ(robotOrientation.c_str(), robotOrientationState.c_str());
+}
+
+
+
 int main(int argc, char **argv)
 {
     testing::InitGoogleTest(&argc, argv);
