@@ -35,10 +35,7 @@ void Robot::updateState(const Command &command)
 
         robotXYposition.first += x;
         robotXYposition.second += y;
-    }
-    else if (searchIfValidCommand != command.validCommands.end())
-    {
-    }
+    }    
 }
 
 pair<int, int> Robot::checkNewStateIsValid(const Command &command) const
