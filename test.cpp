@@ -358,7 +358,27 @@ TEST(ControlTest, InputExampleInputC)
     const string robotOrientationState = robot.getRobotOrientationAsStr();
     EXPECT_STREQ(correctOrientation.c_str(), robotOrientationState.c_str());
 }
-
+TEST(ControlTest, moveOnTheWholeBoardInput)
+{
+    const int expectedXPosition = 3;
+    const int expectedYPosition = 3;
+    const string correctOrientation = "NORTH";
+    const string filePath = "../data/moveOnTheWholeBoardInput.txt";
+    StringGenerator inputData = fileOpener(filePath);
+    Command cmd;
+    Control control;
+    for (auto line : inputData)
+    {
+        cmd.updateCommandState(line);
+        control.movePiece(cmd);
+    }
+    auto [robot, board] = control.getControlState();
+    auto [xPosition, yPosition] = robot.getRobotPosition();
+    EXPECT_EQ(yPosition, expectedXPosition);
+    EXPECT_EQ(xPosition, expectedYPosition);
+    const string robotOrientationState = robot.getRobotOrientationAsStr();
+    EXPECT_STREQ(correctOrientation.c_str(), robotOrientationState.c_str());
+}
 int main(int argc, char **argv)
 {
     testing::InitGoogleTest(&argc, argv);
