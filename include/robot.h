@@ -40,11 +40,11 @@ class Robot
 
 public:
     Robot();
-    Robot(const Command& command);
+    Robot(const Command &command);
     pair<int, int> getRobotPosition();
     void updateState(const Command &command);
-    pair<int,int> checkNewStateIsValid(const Command &command) const ;
-    const char getRobotOrientation() const;
+    pair<int, int> checkNewStateIsValid(const Command &command) const;
+    const char getRobotOrientationAsChar() const;
     const string getRobotOrientationAsStr() const;
     friend ostream &operator<<(ostream &os, const Robot &r);
 };

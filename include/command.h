@@ -87,7 +87,6 @@ struct Command
                             startPosition.first = std::stoi(xP);
                             startPosition.second = std::stoi(yP);
                             canIStart = true;
-                            //cout << "canIStart: " << std::boolalpha << canIStart << endl;
                             startOrientation = orientation;
                             givenCommand = "PLACE";
                         }
@@ -101,17 +100,16 @@ struct Command
         bool commandValid = validCommands.find(inComingCommand) != validCommands.end();
         if (canIStart && commandValid)
         {
-            // cout << "updateCommandState " << inComingCommand << endl;
+         
             givenCommand = inComingCommand;
             return true;
         }
         else if (!commandValid)
         {
-            // cout << "Invalid Command" << endl;
+            
             Command cmd(inComingCommand);
             if (cmd.canIStart && !inComingCommand.empty())
             {
-                //   cout << "INCOMING: " << inComingCommand << endl;
                 *this = cmd;
                 return true;
             }

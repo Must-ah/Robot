@@ -1,8 +1,5 @@
 #ifndef FILE_GENERATOR_H
 #define FILE_GENERATOR_H
-#include <iostream>
-using std::cout;
-using std::endl;
 
 #include <string>
 using std::string;
@@ -127,24 +124,5 @@ StringGenerator fileOpener(const string &filename)
         co_yield "File not found";
     }
 }
-/*
-void readFromFile(string filePath)
-{
-    // cout << "Reading from file: " << filePath << endl;
-    for (auto line : fileOpener(filePath))
-    {
-        cout << line << endl;
-    }
-}
-*/
-
-/*
-int main()
-{
-    UseCounter();
-    readFromFile("./data/input.txt");
-    return 0;
-}
-*/
 
 #endif // FILE_GENERATOR_H

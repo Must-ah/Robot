@@ -78,6 +78,24 @@ TEST(CommandTest, startPosNotINTValue)
         }
     }
 }
+TEST(CommandTest, startPosToLargeIntValue)
+{
+    const string filePath = "../data/startPosToLargeIntValue.txt";
+    StringGenerator inputData = fileOpener(filePath);
+    for (auto line : inputData)
+    {
+        try
+        {
+            Command command(line);
+            Control cmd(command);
+        }
+        catch (std::out_of_range const &ex)
+        {
+            string expectedResponse = ex.what();
+            EXPECT_EQ(expectedResponse, "Out of range");
+        }
+    }
+}
 
 TEST(ControlTest, sendValidCommands)
 {
