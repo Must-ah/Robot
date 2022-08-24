@@ -21,7 +21,8 @@ void Control::movePiece(const Command &command)
     else if (board.move(robot, command))
     {
         this->command = command;
-        robot.updateState(command);
+        this->command.startOrientation = robot.getRobotOrientationAsStr();
+        robot.updateState(this->command);
     }
     board.syncWithRobot(robot);
 }

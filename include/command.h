@@ -40,7 +40,7 @@ struct Command
         "REPORT",
     };
     pair<int, int> startPosition = std::make_pair(-1, -1);
-    string startOrientation = "NORTH";
+    string startOrientation = "NaNC";
     pair<int, int> boardXYDimension = std::make_pair(5, 5);
     Command() = default;
     Command(string newCommand)

@@ -378,8 +378,8 @@ TEST(ControlTest, InputExampleInputC)
 }
 TEST(ControlTest, moveOnTheWholeBoardInput)
 {
-    const int expectedXPosition = 3;
-    const int expectedYPosition = 3;
+    const int expectedXPosition = 4;
+    const int expectedYPosition = 4;
     const string correctOrientation = "NORTH";
     const string filePath = "../data/moveOnTheWholeBoardInput.txt";
     StringGenerator inputData = fileOpener(filePath);

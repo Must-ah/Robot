@@ -33,8 +33,9 @@ class Robot
     unordered_map<string, int> inverseRobotPose = {
         {"NORTH", 0},
         {"EAST", 1},
-        {"WEST", 2},
-        {"SOUTH", 3}};
+        {"SOUTH", 2},
+        {"WEST", 3}
+        };
 
     int robotPoseIndex = 0;
 

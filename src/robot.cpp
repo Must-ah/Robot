@@ -22,6 +22,7 @@ void Robot::updateState(const Command &command)
     robotOrientation = robotPose.at(robotPoseIndex);
     auto searchIfCommandRotation = command.rotationMap.find(command.givenCommand);
     auto orientation_command = command.orientationMap.find(robotOrientation);
+    auto searchIfValidCommand = command.validCommands.find(command.givenCommand);
     if (searchIfCommandRotation != command.rotationMap.end())
     {
         robotPoseIndex += searchIfCommandRotation->second;
@@ -31,8 +32,12 @@ void Robot::updateState(const Command &command)
     else if (orientation_command != command.orientationMap.end())
     {
         auto [x, y] = orientation_command->second;
+
         robotXYposition.first += x;
         robotXYposition.second += y;
+    }
+    else if (searchIfValidCommand != command.validCommands.end())
+    {
     }
 }
 
